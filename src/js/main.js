@@ -1,4 +1,4 @@
-import readGameSaving from './gameSaving';
+import readGameSaving from './readGameSaving';
 
 class GameSavingData {
   constructor(data) {
