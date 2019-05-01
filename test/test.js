@@ -22,7 +22,7 @@ test('Промис возвращается', async () => {
       return ((input) => {
         const buffer = new ArrayBuffer(input.length * 2);
         const bufferView = new Uint16Array(buffer);
-        for (let i = 0; i < input.length; i++) {
+        for (let i = 0; i < input.length; i += 1) {
           bufferView[i] = input.charCodeAt(i);
         }
         resolve(buffer);
@@ -46,7 +46,7 @@ test('Ошибка', async () => {
       return ((input) => {
         const buffer = new ArrayBuffer(input.length * 2);
         const bufferView = new Uint16Array(buffer);
-        for (let i = 0; i < input.length; i++) {
+        for (let i = 0; i < input.length; i += 1) {
           bufferView[i] = input.charCodeAt(i);
         }
         resolve(buffer);
@@ -56,7 +56,7 @@ test('Ошибка', async () => {
   readGameSaving.mockReturnValue(promise);
   const gameSavingLoader = new GameSavingLoader();
   const load = gameSavingLoader.load();
-  return load.then((result) => {
+  return load.catch((result) => {
     expect(result).toEqual(expected);
   });
 });

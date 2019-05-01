@@ -17,15 +17,9 @@ class GameSavingData {
 
 export default class GameSavingLoader {
   load() {
-    return new Promise((resolve, reject) => {
-      const data = readGameSaving();
-      data.then((buffer) => {
-        const gameSavingData = new GameSavingData(buffer);
-        const str = gameSavingData.json();
-        return (str);
-      }).then((st) => {
-        resolve(JSON.parse(st));
-      }).catch(() => reject('Что-то пошло не так'));
-    });
+    return readGameSaving()
+      .then(data => new GameSavingData(data))
+      .then(data => data.json())
+      .catch(() => reject('Что-то пошло не так'));
   }
 }
