@@ -16,10 +16,10 @@ class GameSavingData {
 }
 
 export default class GameSavingLoader {
-  load() {
+  static load() {
     return readGameSaving()
       .then(data => new GameSavingData(data))
       .then(data => data.json())
-      .catch(() => reject('Что-то пошло не так'));
+      .catch(err => new Error(err));
   }
 }
